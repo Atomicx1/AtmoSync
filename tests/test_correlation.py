@@ -1,76 +1,65 @@
-
 import pandas as pd
 import pytest
 
 from src.analytics.correlation import (
     prepare_climate_data,
-    aggregate_weekly_climate,
-    calculate_zone_correlations
+    aggregate_daily_climate,
+    calculate_zone_correlations,
 )
 
 
 def sample_data():
-
-    records = []
-
-    for week in range(4):
-        for zone, latitude, longitude in [
-            ("A", 5, 5),
-            ("B", 15, 15),
-            ("C", 25, 25)
-        ]:
-
-            records.append({
-                "Timestamp": (
-                    pd.Timestamp("2026-01-05")
-                    + pd.Timedelta(weeks=week)
-                ),
-                "Latitude": latitude,
-                "Longitude": longitude,
-                "Temperature": 20 + week * 2 + ord(zone) % 5,
-                "Humidity": 60 + week * 3 + ord(zone) % 4
-            })
-
-    return pd.DataFrame(records)
+    return pd.DataFrame({
+        "timestamp": [
+            "2026-01-01", "2026-01-02",
+            "2026-01-03", "2026-01-04",
+            "2026-01-01", "2026-01-02",
+            "2026-01-03", "2026-01-04",
+        ],
+        "zone_id": [
+            "Zone_A", "Zone_A", "Zone_A", "Zone_A",
+            "Zone_B", "Zone_B", "Zone_B", "Zone_B",
+        ],
+        "temperature_c": [20, 22, 24, 26, 21, 23, 25, 27],
+        "humidity_pct": [60, 62, 64, 66, 61, 63, 65, 67],
+    })
 
 
-def test_zone_assignment():
-
-    result = prepare_climate_data(sample_data())
-
-    assert result["zone_id"].nunique() == 3
-
-
-def test_weekly_aggregation():
-
+def test_actual_zone_identification():
     climate = prepare_climate_data(sample_data())
-    weekly = aggregate_weekly_climate(climate)
 
-    assert len(weekly) == 12
-    assert "temperature_mean" in weekly.columns
-    assert "humidity_mean" in weekly.columns
+    assert climate["zone_id"].nunique() == 2
+    assert set(climate["zone_id"]) == {"Zone_A", "Zone_B"}
+
+
+def test_daily_aggregation():
+    climate = prepare_climate_data(sample_data())
+    daily = aggregate_daily_climate(climate)
+
+    assert len(daily) == 8
+    assert "temperature_mean" in daily.columns
+    assert "humidity_mean" in daily.columns
+    assert "observation_count" in daily.columns
 
 
 def test_correlation_calculation():
-
     climate = prepare_climate_data(sample_data())
-    weekly = aggregate_weekly_climate(climate)
+    daily = aggregate_daily_climate(climate)
 
     pivot, correlation = calculate_zone_correlations(
-        weekly,
-        "temperature_mean",
+        daily,
+        metric="temperature_mean",
         method="pearson",
-        min_periods=3
+        min_periods=3,
     )
 
-    assert pivot.shape == (4, 3)
-    assert correlation.shape == (3, 3)
-    assert correlation.notna().any().any()
+    assert correlation.shape == (2, 2)
+    assert correlation.loc["Zone_A", "Zone_B"] == pytest.approx(1.0)
 
 
 def test_missing_required_column():
+    df = sample_data().drop(columns=["temperature_c"])
 
-    invalid = sample_data().drop(columns=["Humidity"])
+    with pytest.raises(ValueError, match="Missing required columns"):
+        prepare_climate_data(df)
 
-    with pytest.raises(ValueError):
-        prepare_climate_data(invalid)
