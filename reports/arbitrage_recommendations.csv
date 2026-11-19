@@ -1,0 +1,24 @@
+timestamp,zone_id,zone_name,temperature_c,uhi_delta_c,sink_zone_id,sink_temp_c,thermal_spread_c,severity,est_cooling_saving_pct
+2026-10-30 19:00:00,Zone_Urban_Core,Urban Core (Baseline),27.1,4.4,Zone_Rural_Boundary,22.7,4.4,HIGH,19.8
+2026-10-30 20:00:00,Zone_Urban_Core,Urban Core (Baseline),26.0,3.7,Zone_Tech_Corridor,22.1,3.9,HIGH,17.6
+2026-11-04 14:00:00,Zone_Urban_Core,Urban Core (Baseline),25.0,3.2,Zone_Tech_Corridor,21.4,3.6,MODERATE,16.2
+2026-10-30 18:00:00,Zone_Urban_Core,Urban Core (Baseline),27.3,3.5,Zone_Rural_Boundary,23.8,3.5,MODERATE,15.8
+2026-10-30 21:00:00,Zone_Urban_Core,Urban Core (Baseline),25.0,2.8,Zone_Tech_Corridor,21.5,3.5,MODERATE,15.8
+2026-11-05 15:00:00,Zone_Urban_Core,Urban Core (Baseline),27.2,3.3,Zone_Rural_Boundary,23.9,3.3,MODERATE,14.8
+2026-11-04 14:00:00,Zone_Suburban_East,Suburban East,24.6,2.8,Zone_Tech_Corridor,21.4,3.2,MODERATE,14.4
+2026-10-31 14:00:00,Zone_Urban_Core,Urban Core (Baseline),30.9,3.1,Zone_Rural_Boundary,27.8,3.1,MODERATE,14.0
+2026-10-31 15:00:00,Zone_Urban_Core,Urban Core (Baseline),30.9,3.1,Zone_Rural_Boundary,27.8,3.1,MODERATE,14.0
+2026-11-03 16:00:00,Zone_Suburban_East,Suburban East,27.7,3.0,Zone_Rural_Boundary,24.7,3.0,MODERATE,13.5
+2026-11-02 16:00:00,Zone_Tech_Corridor,Tech Corridor,25.3,2.7,Zone_Suburban_East,22.4,2.9,MODERATE,13.0
+2026-11-05 16:00:00,Zone_Urban_Core,Urban Core (Baseline),24.0,2.9,Zone_Rural_Boundary,21.1,2.9,MODERATE,13.0
+2026-11-03 16:00:00,Zone_Urban_Core,Urban Core (Baseline),27.5,2.8,Zone_Rural_Boundary,24.7,2.8,MODERATE,12.6
+2026-11-03 17:00:00,Zone_Urban_Core,Urban Core (Baseline),26.7,2.8,Zone_Rural_Boundary,23.9,2.8,MODERATE,12.6
+2026-11-05 14:00:00,Zone_Suburban_East,Suburban East,28.2,2.8,Zone_Rural_Boundary,25.4,2.8,MODERATE,12.6
+2026-11-08 16:00:00,Zone_Urban_Core,Urban Core (Baseline),27.5,2.8,Zone_Rural_Boundary,24.7,2.8,MODERATE,12.6
+2026-11-02 12:00:00,Zone_Urban_Core,Urban Core (Baseline),25.3,2.7,Zone_Rural_Boundary,22.6,2.7,MODERATE,12.2
+2026-11-05 16:00:00,Zone_Tech_Corridor,Tech Corridor,23.8,2.7,Zone_Rural_Boundary,21.1,2.7,MODERATE,12.2
+2026-11-03 17:00:00,Zone_Suburban_East,Suburban East,26.5,2.6,Zone_Rural_Boundary,23.9,2.6,MODERATE,11.7
+2026-11-05 16:00:00,Zone_Suburban_East,Suburban East,23.7,2.6,Zone_Rural_Boundary,21.1,2.6,MODERATE,11.7
+2026-10-30 17:00:00,Zone_Urban_Core,Urban Core (Baseline),28.4,2.5,Zone_Rural_Boundary,25.9,2.5,MODERATE,11.2
+2026-11-03 15:00:00,Zone_Urban_Core,Urban Core (Baseline),28.5,2.5,Zone_Rural_Boundary,26.0,2.5,MODERATE,11.2
+2026-11-05 14:00:00,Zone_Urban_Core,Urban Core (Baseline),27.9,2.5,Zone_Rural_Boundary,25.4,2.5,MODERATE,11.2
